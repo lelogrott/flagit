@@ -6,3 +6,4 @@ gemspec
 gem 'rake'
 gem 'git'
 gem 'logger'
+gem 'minitest'
