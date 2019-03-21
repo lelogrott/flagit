@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'flagit'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.date        = '2019-03-20'
   s.summary     = "Flagit!"
   s.description = "Flag it. Flag your commit. Share your knowledge and progress, bit by bit."
@@ -15,5 +15,8 @@ Gem::Specification.new do |s|
   s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md", "*.yml", ".rdoc_options", "test/*.rb", "Rakefile"]
   s.require_path = 'lib'
   s.executables = ["flagit"]
-
+  s.license = 'AGPLv3'
+  s.metadata = {
+    "source_code_uri"   => "https://github.com/lelogrott/flagit"
+  }
 end
