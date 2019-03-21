@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'flagit'
+puts Flagit.hi(ARGV[0])
