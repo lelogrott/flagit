@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'flagit'
-  s.version     = '0.0.5'
+  s.version     = '0.0.6'
   s.date        = '2019-03-20'
   s.summary     = "Flagit!"
   s.description = "Flag it. Flag your commit. Share your knowledge and progress, bit by bit."
