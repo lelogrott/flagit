@@ -16,19 +16,20 @@ class Flagit::Lookout
   end
 
   def find_branch_by_name(branch_name)
-    current_or_master unless branch_is_remote(branch_name)
+    return current_or_master unless branch_is_remote(branch_name)
     @repository.branches[branch_name]
   end
 
   private
 
   def current_or_master
-    @repository.branches.select { |b| b.current && branch_is_remote(b.name) } ||
+    branch = @repository.branches.select { |b| b.current && branch_is_remote(b.name) }.first
+    return branch unless branch.nil?
     @repository.branches['master']
   end
 
   def branch_is_remote(branch_name)
-    branch_name.present? && 
-    branch_name.in?(@repository.branches.remote.collect(&:name))
+    !branch_name.nil? && 
+    !(%w(branch_name) & (@repository.branches.remote.collect(&:name))).empty?
   end
 end
