@@ -7,17 +7,28 @@ class Flagit::Lookout
 
   def initialize(path = '.')
     @path = path
+    @repository = Git.open(path)
   end
-  
-  ##
-  # This method gets the prints log of commits from the repository
-  #
-  # = Example
-  #
-  #   lookout = Flagit::Lookout.new('foo/bar')
-  #   lookout.list_commits
-  def list_commits
-    @repository = Git.open(@path, log: Logger.new(STDOUT))
-    @repository.log
+
+  def last_commit(branch_name: nil, commit_depth: 20)
+    branch = find_branch_by_name(branch_name)
+    @repository.log(commit_depth).select { |c| branch.contains? c.sha }.first
+  end
+
+  def find_branch_by_name(branch_name)
+    current_or_master unless branch_is_remote(branch_name)
+    @repository.branches[branch_name]
+  end
+
+  private
+
+  def current_or_master
+    @repository.branches.select { |b| b.current && branch_is_remote(b.name) } ||
+    @repository.branches['master']
+  end
+
+  def branch_is_remote(branch_name)
+    branch_name.present? && 
+    branch_name.in? @repository.branches.remote.collect(&:name)
   end
 end
