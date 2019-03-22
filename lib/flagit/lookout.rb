@@ -29,6 +29,6 @@ class Flagit::Lookout
 
   def branch_is_remote(branch_name)
     branch_name.present? && 
-    branch_name.in? @repository.branches.remote.collect(&:name)
+    branch_name.in?(@repository.branches.remote.collect(&:name))
   end
 end
