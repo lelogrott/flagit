@@ -1,6 +1,7 @@
 class Flagit
   def self.hi(message = 'test', path = '.')
-    redactor = Flagit::Redactor.new(path)
+    lookout = Flagit::Lookout.new(path)
+    redactor = Flagit::Redactor.new(lookout)
     redactor.write_content(message)
   end
 end

@@ -3,18 +3,16 @@ require 'minitest/autorun'
 require 'flagit'
 
 class FlagitTest < Minitest::Test
-  describe 'test_lookout' do
+  describe 'test_flagit' do
     def setup
-      @lookout = MiniTest::Mock.new
-      @lookout.expect(:last_commit, 'Some commit')
+      @flagit_mock = MiniTest::Mock.new
+      @flagit_mock.expect(:hi, 'Text - <commit_message> <commit_url>', ['Text'])
     end
-
-    def test_last_commit
-      lookout = Flagit::Lookout.new
-      lookout.stub :last_commit, @lookout do
-        assert_equal 'Some commit', @lookout.last_commit
+    def test_hi
+      Flagit.stub :hi, @flagit_mock do
+        assert_equal 'Text - <commit_message> <commit_url>', @flagit_mock.hi('Text')
       end
-      @lookout.verify
+      @flagit_mock.verify
     end
   end
 end
