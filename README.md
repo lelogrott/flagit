@@ -4,7 +4,7 @@
 
 *Flag it. Flag your commit. Share your knowledge and progress, bit by bit.*
 
-An easy way to share your your progress right after that commit you are proud of and want everyone to see.
+An easy way to share your progress right after that commit you are proud of and want everyone to see.
 
 ## Installation
     gem install flagit
