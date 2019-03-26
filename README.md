@@ -23,4 +23,5 @@ Your new application will be assigned a consumer key/secret pair which you will 
 
 ## Example
 
-![alt text](https://github.com/lelogrott/flagit/example.gif)
+![alt text](https://github.com/lelogrott/flagit/blob/master/example.gif)
+Example made with [Glorious Demo](https://glorious.codes/demo) by Rafael Camargo ([github](https://github.com/rafaelcamargo) [twitter](https://twitter.com/rcamargo))
