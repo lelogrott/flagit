@@ -4,7 +4,7 @@ class Flagit::Postman
 
   def self.tweet(message)
     auth_client = Flagit::TwitterOAuth.new
-    auth_client.run_auth_process unless auth_client.authorized?
+    auth_client.run_auth_process
     twitter_rest_client = Twitter::REST::Client.new(
       consumer_key: Flagit.configuration.consumer_key,
       consumer_secret: Flagit.configuration.consumer_secret,

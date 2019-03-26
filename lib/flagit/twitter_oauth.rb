@@ -13,10 +13,11 @@ class Flagit::TwitterOAuth
   end
 
   def run_auth_process
+    get_consumer_info if (@consumer_key.nil? || @consumer_secret.nil?)
     return true if authorized?
     request_token = authentication_request_token(oauth_callback: 'oob')
     open_using_browser request_token.authorize_url
-    puts 'Enter the supplied PIN: '
+    puts 'Enter the supplied PIN:'
     pin = gets.chomp
     access_token = authorize(
       request_token.token,
@@ -33,8 +34,10 @@ class Flagit::TwitterOAuth
     @access_token = request_token.get_access_token(options)
     @token = @access_token.token
     @secret = @access_token.secret
-    Flagit.configuration.access_token = @token
-    Flagit.configuration.access_token_secret = @secret
+    Flagit.configure do |config|
+      config.access_token = @token
+      config.access_token_secret = @secret
+    end
     @access_token
   end
 
@@ -91,6 +94,19 @@ class Flagit::TwitterOAuth
     Launchy.open(uri) do
       puts "Open: #{uri}"
     end
+  end
+
+  def get_consumer_info
+    puts 'Enter the Consumer API key:'
+    key = gets.chomp
+    puts 'Enter the Consumer API secret key:'
+    secret = gets.chomp
+    Flagit.configure do |config|
+      config.consumer_key = key
+      config.consumer_secret = secret
+    end
+    @consumer_key = Flagit.configuration.consumer_key
+    @consumer_secret = Flagit.configuration.consumer_secret
   end
 end
   
