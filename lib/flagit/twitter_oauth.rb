@@ -18,7 +18,7 @@ class Flagit::TwitterOAuth
     request_token = authentication_request_token(oauth_callback: 'oob')
     open_using_browser request_token.authorize_url
     puts 'Enter the supplied PIN:'
-    pin = gets.chomp
+    pin = STDIN.gets.chomp
     access_token = authorize(
       request_token.token,
       request_token.secret,
@@ -98,9 +98,9 @@ class Flagit::TwitterOAuth
 
   def get_consumer_info
     puts 'Enter the Consumer API key:'
-    key = gets.chomp
+    key = STDIN.gets.chomp
     puts 'Enter the Consumer API secret key:'
-    secret = gets.chomp
+    secret = STDIN.gets.chomp
     Flagit.configure do |config|
       config.consumer_key = key
       config.consumer_secret = secret

@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
-
 require 'flagit'
-msg = ARGV[0].nil? ? 'Default message' : ARGV[0].to_s
+
+return Flagit.usage if ARGV[0].nil?
+
+msg = ARGV[0]
 path = ARGV[1].nil? ? '.' : ARGV[1].to_s
-puts Flagit.hi(msg, path)
+
+puts Flagit.run(msg, path)
