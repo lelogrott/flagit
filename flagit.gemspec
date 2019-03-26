@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'flagit'
-  s.version     = '0.0.7'
-  s.date        = '2019-03-20'
+  s.version     = '1.0.0'
+  s.date        = '2019-03-26'
   s.summary     = "Flagit!"
   s.description = "Flag it. Flag your commit. Share your knowledge and progress, bit by bit."
   s.authors     = ["Aurelio Grott Neto"]
