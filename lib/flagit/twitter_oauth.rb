@@ -38,6 +38,7 @@ class Flagit::TwitterOAuth
       config.access_token = @token
       config.access_token_secret = @secret
     end
+    Flagit.save!
     @access_token
   end
 

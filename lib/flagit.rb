@@ -2,6 +2,7 @@ class Flagit
   attr_accessor :configuration
 
   def self.run(message, path = '.')
+    Flagit.load
     lookout = Flagit::Lookout.new(path)
     redactor = Flagit::Redactor.new(lookout)
     Flagit::Postman.tweet(redactor.write_content(message))
@@ -23,6 +24,22 @@ class Flagit
 
   def self.configure
     yield(configuration)
+  end
+
+  def self.save!
+    File.open('.flagit-1.0.0.config.json',"w") do |f|
+      f.write(Flagit.configuration.config_to_json)
+    end
+  end
+
+  def self.load
+    loaded = JSON.parse(File.read('.flagit-1.0.0.config.json'))
+    Flagit.configure do |config|
+      config.consumer_key = loaded['consumer_key']
+      config.consumer_secret = loaded['consumer_secret']
+      config.access_token = loaded['access_token']
+      config.access_token_secret = loaded['access_token_secret']
+    end
   end
 end
 
