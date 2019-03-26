@@ -6,6 +6,17 @@
 
 An easy way to share your progress right after that commit you are proud of and want everyone to see.
 
+*flagit* gets the last commit in your current branch and repository and turns into a tweet with a custom message as suffix.
+
+- The path to repository defaults to your current working directory '.'
+- The current branch needs to exist remotely, since *flagit* adds the commit url to the tweet. It defaults to the master branch if the current only exists locally.
+
+First usage of *flagit v1.0.0*
+```shell
+flagit "Happy to use flagit to announce my first gem, flagit! There's still a lot to do, but IT WORKS"
+```
+Result can be found at https://twitter.com/lelogrott/status/1110482323772858368
+
 ## Installation
     gem install flagit
     
