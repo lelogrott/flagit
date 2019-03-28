@@ -13,5 +13,9 @@ class Flagit::Postman
     )
     twitter_rest_client.update(message)
     puts "Tweeted: #{message}"
+    true
+  rescue e
+    puts e
+    false
   end
 end

@@ -6,11 +6,11 @@ class FlagitTest < Minitest::Test
   describe 'test_flagit' do
     def setup
       @flagit_mock = MiniTest::Mock.new
-      @flagit_mock.expect(:hi, 'Text - <commit_message> <commit_url>', ['Text'])
+      @flagit_mock.expect(:run, 'Text - <commit_message> <commit_url>', ['Text'])
     end
-    def test_hi
-      Flagit.stub :run, @flagit_mock do
-        assert_equal 'Text - <commit_message> <commit_url>', @flagit_mock.hi('Text')
+    def test_run
+      Flagit.stub :run, @flagit_mock.run('Text') do
+        assert_equal 'Text - <commit_message> <commit_url>', Flagit.run('Text')
       end
       @flagit_mock.verify
     end
